@@ -1,0 +1,25 @@
+{
+  "name": "react-101",
+  "version": "1.0.0",
+  "description": "First Foray Into React",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omariwallace/react-101.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Omari Wallace",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omariwallace/react-101/issues"
+  },
+  "homepage": "https://github.com/omariwallace/react-101#readme"
+}
