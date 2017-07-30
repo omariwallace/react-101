@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <script src='../build/react.js'></script>
+      <script src='../build/JSXTransformer.js'></script>
+    </head>
+    <body>
+      <div id="mount-point">
+        <div class="straight-render"></div>
+        <div class="first-class"></div>
+        <div class="first-state"></div>
+        <div class="first-counter"></div>
+        <div class="first-filter"></div>
+      </div>
+      <script type="text/jsx">
+        /** @jsx React.DOM **/
+        /** @jsx React.DOM **/
+        // Ex 4: First Filter
+        const MyFirstFilter = React.createClass({
+          getInitialState: function () {
+            return {
+              initialList: [
+                'Lions',
+                'Tigers',
+                'Bears',
+                'Oh-MY'
+              ],
+              list: []
+            }
+          },
+          filter: function (evt) {
+            const initialList = this.state.initialList
+            const newList = initialList.filter(item => {
+              const query = evt.target.value.toLowerCase()
+              return item.toLowerCase().indexOf(query) > -1
+            })
+            this.setState({ list: newList })
+          },
+          componentWillMount: function () {
+            this.setState({ list: this.state.initialList })
+          },
+          render: function () {
+            return (
+              <div class='my-filter'>
+                <h1>Who Run IT?</h1>
+                <input type='text' placeholder='Search yo set' onChange={this.filter} />
+                <List list={this.state.list} />
+              </div>
+            )
+          }
+        })
+
+        const List = React.createClass({
+          render: function () {
+            return (
+              <ul>
+                {this.props.list.map(item => <li>{item}</li>)}
+              </ul>
+            )
+          }
+        })
+
+        React.renderComponent(
+          <MyFirstFilter />,
+          document.querySelector('#mount-point .first-filter')
+        )
+
+        // Ex 4: First Counter
+        const MyFirstCounter = React.createClass({
+          increment: function () {
+            this.setState({
+              count: this.state.count + 1
+            })
+          },
+          decrement: function () {
+            this.setState({
+              count: this.state.count - 1
+            })
+          },
+          getInitialState: function () {
+            return {
+              count: 0
+            }
+          },
+          render: function () {
+            return (
+              <div class='my-counter'>
+                <h1>Dat Count:{this.state.count}</h1>
+                <button type='button' onClick={this.increment}>Chea Chea</button>
+                <button onClick={this.decrement}>Heyell Naw</button>
+              </div>
+            )
+          }
+        })
+
+        React.renderComponent(
+          <MyFirstCounter />,
+          document.querySelector('#mount-point .first-counter')
+        )
+
+        // Ex 3: First State
+        const MyFirstState = React.createClass({
+          getInitialState: function () {
+            return {
+              count: 5
+            }
+          },
+          render: function () {
+            return (
+              <h1>{this.state.count}</h1>
+            )
+          }
+        })
+
+        React.renderComponent(
+          <MyFirstState />,
+          document.querySelector('#mount-point .first-state')
+        )
+        
+        // Ex 2: First Class
+        const MyFirstComponent = React.createClass({
+          render: function () {
+            return (
+              <h1>Wassup, {this.props.name}!</h1>
+            )
+          }
+        })
+
+        React.renderComponent(
+          <MyFirstComponent name='goregeous'/>,
+          document.querySelector('#mount-point .first-class')
+        )
+
+        // Ex 1: First component
+        React.renderComponent(
+          <h1>Hello, world!</h1>,
+          document.querySelector('#mount-point .straight-render')
+        )
+      </script>
+    </body>
+</html>
